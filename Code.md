@@ -29,7 +29,6 @@ spring-boot-starter-security
 thymeleaf-extras-springsecurity5
 
 #### 7) Config 패키지,  entity(User, Role) 패키지,  repository(UserRepository, RoleRepository)  패키지 작성
-data.sql(user, role관련 statement  추가)
-template밑에 view 작성
+#### data.sql(user, role관련 statement  추가), template밑에 view 작성
 
 /admin/home으로 접속하여 로그인창이 뜨는지 확인
