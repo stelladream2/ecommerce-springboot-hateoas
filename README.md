@@ -132,7 +132,7 @@ Post, http://localhost:8080/api/categories/1/subcategories/100
 먼저 “Computer” 카테고리에 존재하는 Product조회한다
 
 
-3-2) Product( id=100)를 생성한 후, “Computer” 카테고리에 저장한다
+3-2) Product( id=100)를 생성한 후, “Computer” 카테고리에 연결한다(Link)
 
 Post, , http://localhost:8080/api/products
 
@@ -143,4 +143,4 @@ Post, , http://localhost:8080/api/products
 
 Post, http://localhost:8080/api/categories/8/products/100
 
-3-3) Delete, http://localhost:8080/api/categories/8/products/100
+3-3) Delete, http://localhost:8080/api/categories/8/products/100, Unlink
