@@ -1,26 +1,38 @@
 # ecommerce-springboot-rest
 
-1. 개요
+### 1. 개요
 
-Product와 Category를 관리하는 Rest API를 구현한다.
+  Product와 Category를 관리하는 Rest API를 구현한다.
 
-2. 기술 스택
+### 2. 기술 스택
 
 Spring Boot + Spring Data JPA + Spring Security + Spring Rest with HATEOAS
 
-3. 가정
+### 3. 가정
 
-1) Product는 다수개의 Category에 속할 수 있다. 즉, 전동 칫솔은 "Electronics" 와
-"Beauty & Personal Care" 카테고리로 분류될 수 있다.
+  - Product는 다수개의 Category에 속할 수 있다. 즉, 전동 칫솔은 "Electronics" 와
+"Beauty & Personal Care" 카테고리에 속할 수 있다.
 
-2) Category는 다수개의 SubCategory를 가질 수 있다. 예를 들어 “Electronics”
+  - Category는 다수개의 SubCategory를 가질 수 있다. 예를 들어 “Electronics”
 category는 'Audio & Video Components', 'Camera & Photo', ‘Computers’
 SubCategory를 가질 수 있다.
 
-4. Rest API
+### 4. Rest API
 
-Products:
-1) Product CRUD ( URL: /api/products), ProductController.java
+### Products:
+#### 1) Product CRUD ( URL: /api/products), `ProductController.java`
+
+| URL                                              | 설명                               |
+|--------------------------------------------------|------------------------------------|
+| GET, /api/products                            | 모든 product를 조회한다           |
+| GET, /api/products /{id}                       | 특정 id를 가진 product를 조회한다 |
+| POST, /api/products, Body { "name": "P1", "price": 100.00 }      | 하나의 product를 생성한다         |
+| PUT, /api/products/{id}, Body { "name": "P1", "price": 100.00 } | 하나의 product를 수정한다.        |
+| DELETE, /api/products/{id}                     | 특정 id를 가진 product를 삭제한다 |
+
+### Categories:
+
+#### 1) Category CRUD ( URL: /api/categories), `CategoryController.java`
 
 | URL                                              | 설명                               |
 |--------------------------------------------------|------------------------------------|
@@ -30,82 +42,105 @@ Products:
 | PUT, /api/categories /{id} Body { "name": "C1" } | 하나의 category를 수정한다.        |
 | DELETE, /api/categories/{id}                     | 특정 id를 가진 category를 삭제한다 |
 
-2) Add / Remove child categories CategorySubcategoriesController.java
+#### 2) Add / Remove child categories `CategorySubcategoriesController.java`
 
 | URL                                              | 설명                               |
 |--------------------------------------------------|------------------------------------|
 | GET, /api/categories/{parentid}/subcategories    | 특정 parentid를 가진 카테고리에 속한 자식카테고리를 조회한다   |
-| GET, /api/categories/{parentid}/subcategories/{childid}   | Parent category와 child category를 연결한다|
-| POST, /api/categories/{parentid}/subcategories/{childid}  | Parent category에서 child category를 제거한다   |
+| POST, /api/categories/{parentid}/subcategories/{childid}   | Parent category와 child category를 연결한다|
+| DELETE, /api/categories/{parentid}/subcategories/{childid}  | Parent category에서 child category를 제거한다   |
 
-3) Link / Unlink products, CategoryProductsController.java
+#### 3) Link / Unlink products, `CategoryProductsController.java`
 
 
 | URL                                              | 설명                               |
 |--------------------------------------------------|------------------------------------|
 | GET, /api/categories/{categoryid}/products    | 특정 id를 가진 category에 속한 모든 product를 조회한다  |
-| GET, /api/categories/{categoryid}/products/{productid}   | Product를 category에 넣는다 |
-| POST, /api/categories/{categoryid}/products/{productid}  | Product를 category에서 제거한다   |
+| POST, /api/categories/{categoryid}/products/{productid}   | Product를 category에 넣는다 |
+| DELETE, /api/categories/{categoryid}/products/{productid}  | Product를 category에서 제거한다   |
 
 
-4. 데이터 베이스 초기화
+### 5. 데이터 베이스 초기화
 1) 데이터베이스(ecommerce)를 생성한다:  create database ecommerce default character set utf8 collate utf8_general_ci;
 2) 애를리케이션 실행시 data.sql에 있는 sql statement가 실행되어 초기 데이터가 저장된다
 
-5. Rest API
+### 6. 실습할 Rest API
+
+### Products:
+1) Get, http://localhost:8080/api/products
+2) Get, http://localhost:8080/api/products/1
+3) Post, http://localhost:8080/api/products, id 100이 생성되는지 확인
 
 
-Products:
-1) Get, http://localhost:8080/ecommerce/api/products
-2) Get, http://localhost:8080/ecommerce/api/products/1
-3) Post, http://localhost:8080/ecommerce/api/products, id 37에 생성되는지 확인
 {
  "name": "삼성컴퓨터",
- "price": 100
-} // body는 postman에서 raw-json format으로 전송
+ "price": 150
+} // body는 postman에서 raw, json format으로 전송
 
-4) Put, http://localhost:8080/ecommerce/api/products/37
+4) Put, http://localhost:8080/api/products
+
 {
  "name": "LG컴퓨터",
- "price": 100
+ "price": 120
 }
-5) Delete, http://localhost:8080/ecommerce/api/products/37
 
-Category:
-1-1) Get, http://localhost:8080/ecommerce/api/categories
-1-2) Get, http://localhost:8080/ecommerce/api/categories/1
-1-3) Post, http://localhost:8080/ecommerce/api/categories, id 18 카테고리 생성됨
+5) Delete, http://localhost:8080/api/products/100
+
+### Category:
+
+#### 1) category CRUD
+1-1) Get, http://localhost:8080/api/categories
+
+1-2) Get, http://localhost:8080/api/categories/1
+
+1-3) Post, http://localhost:8080/api/categories, id 100 카테고리 생성됨
+
 {
  "name": "스마트폰"
 }
 
-1-4) Put, http://localhost:8080/ecommerce/api/categories/18
+1-4) Put, http://localhost:8080/api/categories/100
+
+{
+ "name": "태블릿"
+}
+
+1-5) Delete, http://localhost:8080/api/categories/100
+
+#### 2) Add / Remove child categories 
+
+2-1) Get, http://localhost:8080/api/categories/1/subcategories
+
+2-2) subcategory를 생성한 후(id=100), category(id=1)에 연결한다
+
+Post, http://localhost:8080/api/categories
+
 {
  "name": "스마트폰"
 }
 
-1-5) Delete, http://localhost:8080/ecommerce/api/categories/18
-
-2-1) Get, http://localhost:8080/ecommerce/api/categories/1/subcategories
-2-2) subcategory를 생성한 후(id=19), category(id=1)에 연결한다
-Post, http://localhost:8080/ecommerce/api/categories
-
-{
- "name": "스마트폰"
-}
-Post, http://localhost:8080/ecommerce/api/categories/1/subcategories/19
-
-2-3) Delete, http://localhost:8080/ecommerce/api/categories/1/subcategories/19
+Post, http://localhost:8080/api/categories/1/subcategories/100
 
 
-3-1) Get, http://localhost:8080/ecommerce/api/categories/8/products
+2-3) Delete, http://localhost:8080/api/categories/1/subcategories/100
+
+
+#### 3) Link / Unlink products
+
+3-1) Get, http://localhost:8080/api/categories/8/products
+
 먼저 “Computer” 카테고리에 존재하는 Product조회한다
 
-3-2) Product( id=38)를 생성한 후, “Computer” 카테고리에 저장한다.
-Post, , http://localhost:8080/ecommerce/api/products
+
+3-2) Product( id=100)를 생성한 후, “Computer” 카테고리에 저장한다
+
+Post, , http://localhost:8080/api/products
+
 {
  "name": "LG컴퓨터",
- "price": 100
+ "price": 500
 }
-Post, http://localhost:8080/ecommerce/api/categories/8/products/38
-3-3) Delete, http://localhost:8080/ecommerce/api/categories/8/products/38
+
+Post, http://localhost:8080/api/categories/8/products/100
+
+3-3) Delete, http://localhost:8080/api/categories/8/products/100
