@@ -15,7 +15,7 @@
 #### 2) Repository(CategoryRepository, ProductRepository) 작성
 #### 3) application.properties, data.sql(user, role관련 statement는 제외) 작성
 
-`프로젝트를 빌드한 후, DB에 초기 데이터가 잘 들어가있는지 확인(intellij의 databases를 통해 확인)'
+`프로젝트를 빌드한 후, DB에 초기 데이터가 잘 들어가있는지 확인(intellij의 databases를 통해 확인)`
 
 #### 4) Service Package 작성
 
