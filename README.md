@@ -93,19 +93,19 @@ SubCategory를 가질 수 있다.
 
 1-2) Get, http://localhost:8080/api/categories/1
 
-1-3) Post, http://localhost:8080/api/categories, id 100 카테고리 생성됨
+1-3) Post, http://localhost:8080/api/categories, id 101 카테고리 생성됨
 
 {
  "name": "스마트폰"
 }
 
-1-4) Put, http://localhost:8080/api/categories/100
+1-4) Put, http://localhost:8080/api/categories/101
 
 {
  "name": "태블릿"
 }
 
-1-5) Delete, http://localhost:8080/api/categories/100
+1-5) Delete, http://localhost:8080/api/categories/101
 
 #### 2) Add / Remove child categories 
 
@@ -119,10 +119,10 @@ Post, http://localhost:8080/api/categories
  "name": "스마트폰"
 }
 
-Post, http://localhost:8080/api/categories/1/subcategories/100
+Post, http://localhost:8080/api/categories/1/subcategories/102
 
 
-2-3) Delete, http://localhost:8080/api/categories/1/subcategories/100
+2-3) Delete, http://localhost:8080/api/categories/1/subcategories/102
 
 
 #### 3) Link / Unlink products
@@ -132,7 +132,7 @@ Post, http://localhost:8080/api/categories/1/subcategories/100
 먼저 “Computer” 카테고리에 존재하는 Product조회한다
 
 
-3-2) Product( id=100)를 생성한 후, “Computer” 카테고리에 연결한다(Link)
+3-2) Product( id=103)를 생성한 후, “Computer” 카테고리에 연결한다(Link)
 
 Post, , http://localhost:8080/api/products
 
@@ -141,4 +141,4 @@ Post, , http://localhost:8080/api/products
  "price": 500
 }
 
-Post, http://localhost:8080/api/categories/8/products/100
+Post, http://localhost:8080/api/categories/8/products/103
