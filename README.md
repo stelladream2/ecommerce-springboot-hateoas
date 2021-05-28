@@ -77,7 +77,7 @@ SubCategory를 가질 수 있다.
  "price": 150
 } // body는 postman에서 raw, json format으로 전송
 
-4) Put, http://localhost:8080/api/products
+4) Put, http://localhost:8080/api/products/100
 
 {
  "name": "LG컴퓨터",
@@ -142,5 +142,3 @@ Post, , http://localhost:8080/api/products
 }
 
 Post, http://localhost:8080/api/categories/8/products/100
-
-3-3) Delete, http://localhost:8080/api/categories/8/products/100, Unlink
