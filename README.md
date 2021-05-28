@@ -111,7 +111,7 @@ SubCategory를 가질 수 있다.
 
 2-1) Get, http://localhost:8080/api/categories/1/subcategories
 
-2-2) subcategory를 생성한 후(id=100), category(id=1)에 연결한다
+2-2) subcategory를 생성한 후(id=102), category(id=1)에 연결한다
 
 Post, http://localhost:8080/api/categories
 
